@@ -45,21 +45,22 @@ namespace trade.application.generics.controllers
         }
 
         [HttpGet]
-        [Route("{id}")]
+        [Route("{id}")] //GetOne
         public virtual async Task<IHttpActionResult> GetOne([FromUri] string id)
         {
             return OkResult(await _service.AsQueryable().Where(a => a.Id == id).FirstOrDefaultAsync());
         }
 
 
-        [HttpGet]  //GetAll
+        [HttpGet] //GetAll
         public virtual async Task<IHttpActionResult> Get()
         {
             return OkResult(await _service.AsQueryable().ToListAsync());
         }
 
 
-        [HttpPost] //Update
+        [HttpPatch] //Update
+        [Route("{id}")]
         public virtual async Task<IHttpActionResult> Update([FromBody] TModelo obj)
         {
             await _service.AlterarAsync(obj);
@@ -67,7 +68,7 @@ namespace trade.application.generics.controllers
         }
 
 
-        [HttpGet]
+        [HttpDelete]
         [Route("{id}")] //Delete
         public virtual async Task<IHttpActionResult> Delete([FromUri] string id)
         {
