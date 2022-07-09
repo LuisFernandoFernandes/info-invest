@@ -60,7 +60,6 @@ namespace trade.application.generics.controllers
 
 
         [HttpPatch] //Update
-        [Route("{id}")]
         public virtual async Task<IHttpActionResult> Update([FromBody] TModelo obj)
         {
             await _service.AlterarAsync(obj);
